@@ -1,0 +1,25 @@
+machine:
+  xcode:
+    version: 7.3
+  pre:
+    - sudo pip install --upgrade pip virtualenv
+
+dependencies:
+  override:
+    - ./script/setup.sh
+
+test:
+  override:
+    - true
+
+compile:
+  override:
+    - ./script/build.sh
+
+deployment:
+  override:
+    - OS_NAME=Darwin PKG_NAME=osx ./script/bintray-deploy.sh
+
+general:
+  artifacts:
+    - dist/
